@@ -355,12 +355,12 @@ MigrationBackup/
 
 ### DotnetCore ###
 # .NET Core build folders
-/bin
-/obj
+**/bin
+**/obj
 
 # Common node modules locations
-/node_modules
-/wwwroot/node_modules
+**/node_modules
+**/wwwroot/node_modules
 
 
 ### VisualStudioCode ###

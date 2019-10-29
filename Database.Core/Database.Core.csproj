@@ -2,7 +2,10 @@
 
   <PropertyGroup>
     <PackageId>Finaps.Database.Core</PackageId>
+    <Authors>Simon Martyr;</Authors>
+    <Company>Finaps B.V.</Company>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
 </Project>

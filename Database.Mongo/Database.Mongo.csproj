@@ -3,8 +3,11 @@
   <PropertyGroup>
     <PackageId>Finaps.Database.Mongo</PackageId>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Simon Martyr;</Authors>
+    <Company>Finaps B.V.</Company>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Options" Version="2.2.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.8.1" />
   </ItemGroup>
 

@@ -1,0 +1,71 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+trigger:
+  branches:
+    include:
+      - master
+
+variables:
+  BuildConfiguration: 'Release'
+  Major: 1
+  Minor: 0
+
+#The build has 4 seperate tasks run under 1 step
+
+jobs:
+  - job: BuildBinaries
+    pool:
+      vmImage: 'ubuntu-16.04'
+    steps:
+    - task: DockerCompose@0
+      displayName: Run services
+      inputs:
+        action: Run services
+        dockerComposeFile: 'Database.FunctionalTests/docker-compose.yml'
+    - task: DotNetCoreCLI@2
+      displayName: 'Restore Projects'
+      inputs:
+        command: 'restore'
+    - task: DotNetCoreCLI@2
+      displayName: 'Run Tests'
+      inputs:
+        command: 'test'
+        publishTestResults: true
+    - task: DotNetCoreCLI@2
+      displayName: 'Build Dotnet Binary File'
+      inputs:
+        command: 'build'
+        arguments: '--configuration $(BuildConfiguration)'
+    - task: CopyFiles@2
+      displayName: Copy Built Files
+      inputs:
+        contents: | 
+          **/$(BuildConfiguration)/**/*
+          **/?(*.sln|*.csproj)
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathToPublish: $(Build.ArtifactStagingDirectory)
+        artifactName: BuildOutputs
+  
+  - job: OutputVersionFile
+    condition: eq(variables['build.sourceBranch'], 'refs/heads/master')
+    pool:
+      vmImage: 'ubuntu-16.04'
+    variables:
+      Patch: $[counter(format('{0}.{1}',variables.Major,variables.Minor),0)]
+    steps:
+    - bash: echo $(Major).$(Minor).$(Patch) > version.txt
+    - task: CopyFiles@2
+      displayName: Copy Version Files
+      inputs:
+        contents: | 
+          **/version.txt
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - task: PublishBuildArtifacts@1
+      displayName: Publish Version File
+      inputs:
+        pathToPublish: $(Build.ArtifactStagingDirectory)
+        artifactName: VersionOutput

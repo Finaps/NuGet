@@ -19,12 +19,17 @@ jobs:
     pool:
       vmImage: 'ubuntu-16.04'
     steps:
+    - task: DockerCompose@0
+      displayName: Run services
+      inputs:
+        action: Run services
+        dockerComposeFile: 'Database.FunctionalTests/docker-compose.yml'
     - task: DotNetCoreCLI@2
       displayName: 'Restore Projects'
       inputs:
         command: 'restore'
     - task: DotNetCoreCLI@2
-      displayName: 'Run Unit Tests'
+      displayName: 'Run Tests'
       inputs:
         command: 'test'
         publishTestResults: true

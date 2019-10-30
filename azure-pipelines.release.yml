@@ -25,4 +25,4 @@ jobs:
     pool:
       vmImage: 'ubuntu-16.04'
     steps:
-      - template: NuGet/release-build.yml
+      - template: NuGet/release-build.yml@finapsTemplates

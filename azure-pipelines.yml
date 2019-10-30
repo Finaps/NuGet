@@ -9,6 +9,7 @@ resources:
   - repository: finapsTemplates  # identifier (A-Z, a-z, 0-9, and underscore)
     type: git  # see below
     name: AzurePipelinesTemplates/AzurePipelinesTemplates  # repository name (format depends on `type`)
+    ref: refs/heads/feature/dotnet-templates
 
 #The build has 4 seperate tasks run under 1 step
 variables:

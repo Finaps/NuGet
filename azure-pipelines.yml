@@ -19,4 +19,4 @@ jobs:
     pool:
       vmImage: 'ubuntu-16.04'
     steps:
-      - template: DotNetCore/build-test-project.yml@finapsTemplate
+      - template: DotNetCore/build-test-project.yml@finapsTemplates

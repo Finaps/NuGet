@@ -1,0 +1,24 @@
+trigger:
+  branches:
+    include:
+      - master
+
+pr: none
+
+resources:
+  repositories:
+  - repository: finapsTemplates  
+    type: git  
+    name: AzurePipelinesTemplates/AzurePipelinesTemplates  
+    ref: refs/heads/feature/dotnet-templates
+
+variables:
+  DockerComposeFilePath: 'Database.FunctionalTests/docker-compose.yml'
+
+jobs:
+  - job: BuildAndTestProject
+    displayName: Build and Test DotNet Project
+    pool:
+      vmImage: 'ubuntu-16.04'
+    steps:
+      - template: DotNetCore/build-test-project.yml@finapsTemplates

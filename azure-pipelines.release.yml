@@ -18,6 +18,8 @@ variables:
     value: 1
   - name: Minor
     value: 0
+  - name: VersionPrefix
+    value: $(Major).$(Minor).$(Patch)
 
 jobs:
   - job: BuildAndTestProject

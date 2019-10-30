@@ -13,7 +13,7 @@ resources:
 
 #The build has 4 seperate tasks run under 1 step
 variables:
-  DockerComposeFile: 'Database.FunctionalTests/docker-compose.yml'
+  DockerComposeFilePath: 'Database.FunctionalTests/docker-compose.yml'
 
 jobs:
   - job: BuildBinaries

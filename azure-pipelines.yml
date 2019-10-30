@@ -16,7 +16,8 @@ variables:
   DockerComposeFilePath: 'Database.FunctionalTests/docker-compose.yml'
 
 jobs:
-  - job: BuildBinaries
+  - job: BuildAndTestProject
+    displayName: Build and Test DotNet Project
     pool:
       vmImage: 'ubuntu-16.04'
     steps:

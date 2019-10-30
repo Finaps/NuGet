@@ -3,7 +3,7 @@ trigger:
     include:
       - master
 
-pr: none
+# pr: none
 
 resources:
   repositories:
@@ -13,7 +13,11 @@ resources:
     ref: refs/heads/feature/dotnet-templates
 
 variables:
-  DockerComposeFilePath: 'Database.FunctionalTests/docker-compose.yml'
+  - template: NuGet/release-variables.yml@finapsTemplates
+  - name: Major
+    value: 1
+  - name: Minor
+    value: 0
 
 jobs:
   - job: BuildAndTestProject
@@ -21,4 +25,4 @@ jobs:
     pool:
       vmImage: 'ubuntu-16.04'
     steps:
-      - template: DotNetCore/build-test-project.yml@finapsTemplates
+      - template: NuGet/release-build.yml

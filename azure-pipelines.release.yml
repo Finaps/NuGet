@@ -1,0 +1,27 @@
+trigger:
+  branches:
+    include:
+      - master
+
+pr: none
+
+resources:
+  repositories:
+  - repository: finapsTemplates  
+    type: git  
+    name: AzurePipelinesTemplates/AzurePipelinesTemplates  
+
+variables:
+  - template: NuGet/release-variables.yml@finapsTemplates
+  - name: Major
+    value: 1
+  - name: Minor
+    value: 0
+
+jobs:
+  - job: BuildAndTestProject
+    displayName: Build and Test DotNet Project
+    pool:
+      vmImage: 'ubuntu-16.04'
+    steps:
+      - template: NuGet/release-build.yml@finapsTemplates

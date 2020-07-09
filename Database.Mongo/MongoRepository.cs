@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Database.Core.Exceptions;
 using Database.Core.Models;
-using Database.Mongo.Extentions;
+using Database.Mongo.Extensions;
 using Database.Mongo.Interfaces;
 using Database.Mongo.Pagination;
 using MongoDB.Driver;

@@ -2,7 +2,7 @@ using System;
 using Database.Mongo.Interfaces;
 using MongoDB.Driver;
 
-namespace Database.Mongo.Extentions
+namespace Database.Mongo.Extensions
 {
   public static class MongoCoreExtensions
   {

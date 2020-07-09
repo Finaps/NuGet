@@ -1,0 +1,24 @@
+{
+  "folders": [
+    {
+      "name": "Database Core",
+      "path": "Database.Core"
+    },
+    {
+      "name": "Database EF",
+      "path": "Database.EF"
+    },
+    {
+      "name": "Database FunctionalTests",
+      "path": "Database.FunctionalTests"
+    },
+    {
+      "name": "Database Mongo",
+      "path": "Database.Mongo"
+    },
+    {
+      "name": "Database Test",
+      "path": "Database.Test"
+    }
+  ]
+}

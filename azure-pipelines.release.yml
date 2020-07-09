@@ -16,7 +16,7 @@ variables:
   - name: Major
     value: 1
   - name: Minor
-    value: 0
+    value: 1
 
 jobs:
   - job: BuildAndTestProject

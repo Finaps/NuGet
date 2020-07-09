@@ -19,6 +19,9 @@
     {
       "name": "Database Test",
       "path": "Database.Test"
+    },
+    {
+      "path": "."
     }
   ]
 }

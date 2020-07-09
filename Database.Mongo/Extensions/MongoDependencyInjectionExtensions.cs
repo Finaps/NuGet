@@ -3,7 +3,7 @@ using Database.Mongo.Connection;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 
-namespace Database.Mongo.Extentions
+namespace Database.Mongo.Extensions
 {
   public static class MongoDependencyInjectionExtensions
   {

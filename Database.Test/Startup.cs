@@ -1,12 +1,14 @@
 ﻿using Database.Test.Models;
 using Database.Test.Repositories;
-using Finaps.Commons.MongoDB;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
+using Database.Mongo.Extensions;
+using Database.Mongo.Connection;
 
 namespace Database.Test
 {
@@ -22,7 +24,6 @@ namespace Database.Test
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
       //services.Configure<MongoOptions>(Configuration.GetSection("Mongo"));
       services.AddMongoDBConnection(new MongoOptions()
       {
@@ -34,10 +35,11 @@ namespace Database.Test
       services.AddScoped<ITestEfRepository, TestEfRepository>();
       // services.AddDbContext<TestDbContext>(options => options.UseInMemoryDatabase("coolkids"));
       services.AddDbContext<TestDbContext>(options => options.UseSqlite("Data source=cool.db"));
+      services.AddControllers();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
       if (env.IsDevelopment())
       {
@@ -50,7 +52,11 @@ namespace Database.Test
       }
 
       app.UseHttpsRedirection();
-      app.UseMvc();
+      app.UseRouting();
+      app.UseEndpoints(endpoints =>
+      {
+        endpoints.MapControllers();
+      });
     }
   }
 }

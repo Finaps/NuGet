@@ -19,11 +19,13 @@ namespace Database.EF
     }
     public virtual Task AddAsync(T entity)
     {
-      return Context.Set<T>().AddAsync(entity);
+      Context.Set<T>().Add(entity);
+      return Task.CompletedTask;
     }
     public virtual Task AddRangeAsync(IEnumerable<T> entities)
     {
-      return Context.Set<T>().AddRangeAsync(entities);
+      Context.Set<T>().AddRange(entities);
+      return Task.CompletedTask;
     }
     public async virtual Task<long> CountAsync()
     {
@@ -41,7 +43,7 @@ namespace Database.EF
     {
       return Context.Set<T>().Skip(offset).Take(limit).ToListAsync();
     }
-    public virtual Task<T> GetByIdAsync(Guid id)
+    public virtual ValueTask<T> GetByIdAsync(Guid id)
     {
       return Context.Set<T>().FindAsync(id);
     }

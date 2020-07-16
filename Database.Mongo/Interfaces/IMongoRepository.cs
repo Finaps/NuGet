@@ -6,6 +6,7 @@ namespace Database.Mongo.Interfaces
 {
   public interface IMongoRepository<T> : IRepository<T> where T : class, IMongoModel
   {
+    Task<T> GetByIdAsync(Guid id);
     Task UpdateAsync(T entity);
     Task RemoveAsync(Guid id);
     Task RemoveAsync(T entity);

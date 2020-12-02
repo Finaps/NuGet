@@ -2,4 +2,6 @@
 
 Finaps' .NET Core NuGet Packages
 
-[Deprecated] [Finaps.Commons](https://github.com/Finaps/NuGet/Finaps/Commons)
+## Packages
+
+[Finaps.Commons](https://github.com/Finaps/NuGet/tree/main/Finaps/Commons) [Deprecated] 
